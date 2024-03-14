@@ -1,0 +1,51 @@
+
+  .row {
+    margin-top: 20px;
+  }
+  
+  .col-md-3 {
+    margin-right: 20px;
+  }
+  
+  .col-md-9 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .w-50 {
+    width: 50%;
+  }
+  
+  .w-75 {
+    width: 75%;
+    margin-top: 20px;
+  }
+  
+  .table {
+    width: 100%;
+  }
+  
+  .btn {
+    margin-right: 10px;
+    background-color: red;
+    padding: 4px;
+    border-radius: 5px;
+    color: white;
+   
+    border: 0;
+    margin-bottom: 8px;
+  }
+
+  .edit-btn{
+    margin-right: 10px;
+    background-color: green;
+    padding: 4px;
+    border-radius: 5px;
+    color: white;
+    width: 47px;
+    border: 0;
+    margin-bottom: 8px;
+  }
+  
