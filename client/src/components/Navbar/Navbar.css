@@ -1,57 +1,46 @@
-nav{
+/* Default styles */
+nav {
     padding: 10px 2%;
     justify-content: space-between;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background-color: #fff;
+    background-color: #fc8626;
+    /* background-color: rgb(131, 131, 233); */
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
-.nav-left .menu-icon{
+.nav-left .menu-icon {
     width: 22px;
     margin-right: 25px;
-
 }
 
-.nav-left .logo{
+.nav-left .logo {
     width: 130px;
 }
 
-
-
-.nav-right img{
-    width: 25px;
+.nav-right img {
+    width: 35px;
     margin-right: 25px;
 }
 
-
-.nav-right .user-icon{
+.nav-right .user-icon {
     width: 35px;
     border-radius: 50%;
 }
 
-
-
-
-/* DROPDOWN PROFILE */
-
-
-.plogo{
+.plogo {
     width: 130px;
-
 }
 
-.user-pic{
+.user-pic {
     width: 40px;
     border-radius: 50%;
     cursor: pointer;
     margin-left: 30px;
 }
 
-
-
-.sub-menu-wrap{
+.sub-menu-wrap {
     position: absolute;
     top: 100%;
     right: 10%;
@@ -59,36 +48,34 @@ nav{
     max-height: 0px;
     overflow: hidden;
     transition: max-height 0.5s;
-    /* border: 1px solid grey; */
-    
 }
 
-.sub-menu-wrap.active{
+.sub-menu-wrap.active {
     max-height: 600px;
 }
 
-.sub-menu{
+.sub-menu {
     background: #f7f2f2;
     padding: 20px;
     margin: 10px;
 }
 
-.user-info{
+.user-info {
     display: flex;
     align-items: center;
 }
 
-.sub-menu-wrap h3{
+.sub-menu-wrap h3 {
     font-weight: 500;
 }
 
-.user-info img{
+.user-info img {
     width: 60px;
     border-radius: 50%;
     margin-right: 15px;
 }
 
-.sub-menu hr{
+.sub-menu hr {
     border: 0;
     height: 1px;
     width: 100%;
@@ -96,7 +83,7 @@ nav{
     margin: 15px 0 10px;
 }
 
-.sub-menu-link{
+.sub-menu-link {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -104,13 +91,12 @@ nav{
     margin: 12px 0;
 }
 
-.sub-menu-link p{
+.sub-menu-link p {
     margin-top: 4px;
     width: 100%;
-
 }
 
-.sub-menu-link img{
+.sub-menu-link img {
     width: 40px;
     background: #e5e5e5;
     border-radius: 50%;
@@ -118,16 +104,50 @@ nav{
     margin-right: 15px;
 }
 
-.sub-menu-link span{
+.sub-menu-link span {
     font-size: 22px;
     transition: transform 0.5s;
 }
 
-.sub-menu-link:hover span{
+.sub-menu-link:hover span {
     transform: translateX(5px);
-
 }
 
-.sub-menu-link:hover p{
+.sub-menu-link:hover p {
     font-weight: 600;
+}
+
+/* Media queries for responsiveness */
+
+@media (max-width: 768px) {
+    nav {
+        padding: 10px;
+    }
+
+    .nav-left .menu-icon,
+    .nav-left .logo {
+        display: none;
+    }
+
+    .nav-right img,
+    .nav-right .user-icon {
+        margin-right: 10px;
+    }
+
+    .sub-menu-wrap {
+        right: 0;
+        width: 100%;
+    }
+
+    .sub-menu-wrap.active {
+        max-height: none;
+    }
+
+    .sub-menu-link p {
+        display: none;
+    }
+
+    .sub-menu-link span {
+        font-size: 18px;
+    }
 }

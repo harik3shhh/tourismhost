@@ -9,9 +9,10 @@ import {Modal} from "antd"
 import UpdateForm from '../../components/Form/UpdateForm';
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-toastify';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 
-const CreateCategory = () => {
+const CreateCategory = ({sidebar}) => {
   const [categories, setCategories] = useState([]);
   const [open, isOpen] = useState(false);
   const [auth] = useAuth();
@@ -65,6 +66,7 @@ const CreateCategory = () => {
 
   return (
     <>
+    <Sidebar sidebar={sidebar}/>
       <div className="container container-fluid m-3 p-3">
         <div className="row">
             <div className="col-md-3">

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import "./Navbar.css";
 import menuIcon from "../../assets/menu.png";
-import notificationIcon from "../../assets/notification.png";
-import profileIcon from "../../assets/profilepicimage.jpeg";
+
+import profileIcon from "../../assets/bluepic.png";
 
 import settingsPic from "../../assets/setting.png";
 import helpPic from "../../assets/help.png";
@@ -13,21 +13,17 @@ import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SearchInput from '../Form/SearchInput';
 import { BsMoon, BsSunFill } from "react-icons/bs"
-import theme, { SetTheme } from '../../redux/theme';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const Navbar = ({ setSidebar }) => {
+const Navbar = ({ setSidebar, props} )  => {
   const { theme } = useSelector((state) => state.theme);
   const [open, setOpen] = useState(false);
   const [auth, setAuth] = useAuth();
   const dispatch = useDispatch();
 
 
-  const handleTheme = () => {
-    const themeValue = theme === "light" ? "dark" : "light";
-    dispatch(SetTheme(themeValue));
-  };
 
   const handleLogout = () => {
     setAuth({
@@ -40,7 +36,7 @@ const Navbar = ({ setSidebar }) => {
   };
 
   return (
-    <nav className='flex-div'>
+    <nav className={`flex-div`}>
       <div className="nav-left flex-div">
         <img src={menuIcon} className='menu-icon' onClick={() => setSidebar(prev => !prev)} alt="" />
         <NavLink to="/" style={{color:"#000"}}><h1>INDIAN TOUR🌴SM</h1></NavLink>
@@ -51,17 +47,17 @@ const Navbar = ({ setSidebar }) => {
       <div className="nav-right flex-div">
 
 
-        <ul style={{listStyle: "none"}} className="dropdown-menu">
-          <li className='nav-item'>
-            <NavLink className="dropdown-item nav-link" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}>Dashboard</NavLink>
+        <ul style={{listStyle: "none",}} className="dropdown-menu">
+          <li className='nav-item' >
+            <NavLink className="dropdown-item nav-link" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}><h3 style={{color: "black"}}>Dashboard</h3> </NavLink>
           </li>
         </ul>
 
 
-        <button onClick={() => handleTheme()}>
+       {/* <button onClick={() => handleTheme()}>
           {theme === "dark" ? <BsMoon /> : <BsSunFill />}
         </button>
-        <img src={notificationIcon} alt="image" />
+        <img src={notificationIcon} alt="image" />` */}
 
         {/* PROFILE MENU */}
         <div className="profile-wrapper"
@@ -74,7 +70,7 @@ const Navbar = ({ setSidebar }) => {
             <div className="sub-menu">
               <div className="user-info">
                 <img src={profileIcon} className='plogo' alt="" />
-                <h2>{auth?.user?.name}</h2>
+                <h2>{auth?.user?.name || "Guest"}</h2>
               </div>
               <hr />
               <NavLink to="/profile" className="sub-menu-link">
@@ -85,7 +81,7 @@ const Navbar = ({ setSidebar }) => {
                 <img src={settingsPic} alt="" />
                 <p>Settings & Privacy</p>
               </NavLink>
-              <NavLink to="" className="sub-menu-link">
+              <NavLink to="/contact" className="sub-menu-link">
                 <img src={helpPic} alt="" />
                 <p>Help & Support</p>
               </NavLink>

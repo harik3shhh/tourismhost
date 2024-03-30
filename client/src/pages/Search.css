@@ -1,0 +1,49 @@
+/* Search.css */
+
+.search-container {
+    margin-top: 20px;
+}
+
+.search-text-center {
+    text-align: center;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.custom-card {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.custom-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.custom-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.custom-card-content {
+    padding: 10px;
+}
+
+.custom-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.custom-card-description {
+    font-size: 1rem;
+    color: #555;
+}

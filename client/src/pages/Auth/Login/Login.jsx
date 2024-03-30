@@ -90,7 +90,7 @@ const Login = ({sidebar}) => {
               <button className='btn1' onClick={() => setShowPassword(true)}>Let's Go</button>
             )}
 
-            <NavLink to="" ><p className='forgot'>forgot password?</p></NavLink>
+            <NavLink to="/forgot-password" ><p className='forgot'>forgot password?</p></NavLink>
             <NavLink to="/register" ><p className='create'>create account</p></NavLink>
 
             <button className='btn2' type="submit">Login</button>

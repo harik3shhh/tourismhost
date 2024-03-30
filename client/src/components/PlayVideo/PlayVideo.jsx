@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
 import "./PlayVideo.css"
-import video1 from "../../assets/video.mp4"
-import like from "../../assets/like.png"
-import dislike from "../../assets/dislike.png"
-import share from "../../assets/share.png"
-import save from "../../assets/save.png"
+import video1 from "../../assets/beach.mp4"
+import profileIcon from "../../assets/bluepic.png";
 import jack from "../../assets/jack.png"
-import user_profile from "../../assets/user_profile.jpg"
+import { useCart } from '../../context/wishlist';
+import { toast } from 'react-toastify';
+import { useAuth } from '../../context/auth';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -17,6 +16,8 @@ const PlayVideo = () => {
     const params = useParams();
     const [product, setProduct] = useState({});
     const [relatedProducts, setRelatedProducts] = useState([]);
+    const [cart, setCart] = useCart();
+    const [auth] = useAuth();
 
     // initial details
     useEffect(() => {
@@ -46,44 +47,59 @@ const PlayVideo = () => {
 
 
   return (
-    <div className='play-video'>
-        <video src={video1} controls autoPlay muted></video>
-        <h3>{product.name}</h3>
-        <div className="play-video-info">
-            <p>15225 Views &bull; 2 days ago</p>
-            <div>
-                <span><img src={like} alt="" />125</span>
-                <span><img src={dislike} alt="" />125</span>
-                <span><img src={share} alt="" />Share</span>
-                <span><img src={save} alt="" />Save</span>
-            </div>
+    <div className=' play-video'>
+        <video src={video1} controls autoPlay loop muted></video>
+       
+        <div style={{ float: "right", marginRight: "20px", flexBasis: "90%" }}>
+            <img 
+                src={`http://localhost:8000/api/v1/place/place-photo/${product._id}`}
+                alt={product.name}  
+                height={"250px"} 
+                width={'400px'} 
+            />
+            <h2 style={{textAlign: "center", fontSize: "35px"}}>{product.name}</h2>
+            <hr />
+        
+            <div style={{marginBottom: "9.5px", display: "flex"}}><h4>Food :</h4><span>{ product.food}</span></div>
+
+            <div style={{marginBottom: "9.5px", display: "flex"}}><h4>Transport :</h4><span>{product.transport}</span></div>
+
+            <div style={{marginBottom: "9.5px", display: "flex"}}><h4>Nearby Places :</h4><span>{product.nearby}</span></div>
+            
+            <div style={{marginBottom: "9.5px", display: "flex"}}><h4>Location :</h4><span>{product.location}</span></div>
+
+            <div style={{marginBottom: "9.5px", display: "flex"}}><h4>Best time to visit :</h4><span>{product.besttime}</span></div>
         </div>
+
+            <h3>Trailer - {product.name}</h3>
+      
         <hr />
         <div className="publisher">
-            <img src={jack} alt="" />
+            <img src={profileIcon} alt="" />
             <div>
                 <p>Description</p>
                 <span></span>
             </div>
-            <button>Follow</button>
-        </div>
+            {
+                !auth.user ?(
+                <>
+                    
+                </>
+            ) : (   
+            <button style={{marginRight: "10px"}} onClick={() =>{setCart([...cart, product])
+                    localStorage.setItem("cart", JSON.stringify([...cart, product]))
+                    toast.success("Place Added to Wishlist")
+                }}>Add to Wishlist</button>
+                
+                )}
+                <NavLink to={"/trainbooking"}><button style={{background:"blue"}}>Book Train</button></NavLink>
+                <NavLink to={"/flightbooking"}><button style={{background:"orange"}}>Book Flight</button></NavLink>
+                </div>
         <div className="vid-description">
             <p>{product.description}</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, libero tenetur hic harum veniam labore enim vitae sed cupiditate eos!</p>
+            {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, libero tenetur hic harum veniam labore enim vitae sed cupiditate eos!</p> */}
             <hr />
-            <h4>130 Comments</h4>
-            <div className="comment">
-                <img src={user_profile} alt="" />
-                <div>
-                    <h3>harikesh <span>1 day ago</span></h3>
-                    <p>This is awsome. I loved it</p>
-                    <div className="comment-action">
-                        <img src={like} alt="" />
-                        <span>244</span>
-                        <img src={dislike} alt="" />
-                    </div>
-                </div>
-                </div>
+            
         </div>
     </div>
   )

@@ -18,8 +18,8 @@ const Spinner = ({path = "login"}) => {
 
     return (
         <>
-            <div className="container" style={{height: "100vh"}}>
-                <h1>Unauthorized Access</h1>
+            <div style={{height: "100vh", display:"flex", alignItems: "center",flexDirection: "column", justifyContent:"center", background: "rgb(233, 225, 238)"} }>
+                <h1 style={{color:"red"}}>Unauthorized Access</h1>
                 <h2 className='Text-center'>Redirecting to you in {count} second</h2>
                 <div className="spinner-border" role="status">
                     <span className="visually-hidden">Loading...</span>

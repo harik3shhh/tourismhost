@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/auth';
 import axios from 'axios';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import { toast } from 'react-toastify';
 
-
-const Profile = () => {
+const Profile = ({ sidebar }) => {
     const [auth, setAuth] = useAuth();
 
-
-
     const [user, setUser] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        password: "",
-
-
+        name: '',
+        email: '',
+        phone: '',
+        password: '',
     });
 
-    //handling input
+    // Handling input
     const handleInput = (e) => {
         let name = e.target.name;
         let value = e.target.value;
@@ -29,93 +26,112 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        const { name, email, phone } = auth.user;
-        setUser({
-            ...user,
-            name,
-            email,
-            phone,
-
-        });
-    }, [auth?.user])
-
-
-    // handle submit 
+        if (auth?.user) {
+            const { name, email, phone } = auth.user;
+            setUser({
+                ...user,
+                name,
+                email,
+                phone,
+            });
+        }
+    }, [auth?.user]);
+    
+    // Handle submit
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
-
 
         try {
-
             const config = {
                 headers: {
-                    Authorization: `${auth.token}`
-                }
+                    Authorization: `${auth.token}`,
+                },
             };
 
-            const { data } = await axios.put("http://localhost:8000/api/auth/profile", user, config);
+            const { data } = await axios.put('http://localhost:8000/api/auth/profile', user, config);
             if (data?.error) {
-                toast.error(data?.error)
+                toast.error(data?.error);
             } else {
                 setAuth({
                     ...auth,
-                    user: data?.updatedUser
+                    user: data?.updatedUser,
                 });
-                let ls = localStorage.getItem("auth");
+                let ls = localStorage.getItem('auth');
                 ls = JSON.parse(ls);
                 ls.user = data.updatedUser;
-                localStorage.setItem("auth", JSON.stringify(ls))
-                toast.success("Profile Updated Successfully")
+                localStorage.setItem('auth', JSON.stringify(ls));
+                toast.success('Profile Updated Successfully');
             }
         } catch (error) {
             console.log(error);
-            toast.error("Something Went Wrong");
+            toast.error('Something Went Wrong');
         }
-
-
     };
 
     return (
         <>
-            <div className=" container container-fluid m-3 p-3">
-                <div className="row">
-                    <div className="col-md-3">
-
-                    </div>
-                    <div className="col-md-9">
-                        <div className="form-container">
-                            <form onSubmit={handleSubmit}>
-                                <h1 className='heading'>USER PROFILE</h1>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control" name="name" placeholder='Name'
-                                        value={user.name} onChange={handleInput}
-                                    />
-                                </div>
-
-                                <div className="mb-3">
-                                    <input type="email" className="form-control" name="email" placeholder='Email Address'
-                                        value={user.email} onChange={handleInput}
-                                        disabled
-                                    />
-                                </div>
-                                
-                                <div className="mb-3">
-
-                                    <input type="phone" className="form-control" name="phone" placeholder='+91'
-                                        value={user.phone} onChange={handleInput}
-                                    />
-
-                                </div>
-
-                                <button type="submit" className="btn btn-primary ">UPDATE</button>
-                            </form>
+            <Sidebar sidebar={sidebar} />
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <div style={{ width: '400px', padding: '20px', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+                    <form onSubmit={handleSubmit}>
+                        <h1 style={{ marginBottom: '20px', textAlign: 'center' }}>USER PROFILE</h1>
+                        <div style={{ marginBottom: '20px' }}>
+                            <label>Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="name"
+                                value={user.name}
+                                onChange={handleInput}
+                                style={{ borderRadius: '5px', width: '100%', padding: '8px' }}
+                            />
                         </div>
-                    </div>
+
+                        <div style={{ marginBottom: '20px' }}>
+                            <label>Email Address</label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                name="email"
+                                value={user.email}
+                                onChange={handleInput}
+                                disabled
+                                style={{ borderRadius: '5px', width: '100%', padding: '8px' }}
+                            />
+                        </div>
+
+                        <div style={{ marginBottom: '20px' }}>
+                            <label>Phone</label>
+                            <input
+                                type="phone"
+                                className="form-control"
+                                name="phone"
+                                value={user.phone}
+                                onChange={handleInput}
+                                style={{ borderRadius: '5px', width: '100%', padding: '8px' }}
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="btn btn-primary"
+                            style={{
+                                backgroundColor: '#007bff',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '3px',
+                                padding: '10px 20px',
+                                cursor: 'pointer',
+                                width: '100%',
+                            }}
+                        >
+                            UPDATE
+                        </button>
+                    </form>
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Profile
+export default Profile;

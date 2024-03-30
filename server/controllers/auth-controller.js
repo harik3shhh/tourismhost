@@ -1,6 +1,7 @@
 // const User = require("../models/user-model");
 const userModel = require("../models/user-model");
 const { hashPassword, comparePassword } = require("../helpers/helper")
+const Message = require("../models/message-model");
 const JWT = require("jsonwebtoken");
 
 
@@ -11,7 +12,7 @@ const JWT = require("jsonwebtoken");
 
 const register = async(req, res) =>{
     try {
-        const {name, email, phone, password } = req.body;
+        const {name, email, phone, password, answer } = req.body;
     if(!name){
         res.send({message: "Name is Required"});
     }
@@ -28,6 +29,10 @@ const register = async(req, res) =>{
         res.send({message: "Password is Required"});
     }
 
+    if(!answer){
+        res.send({message: "Answer is Required"});
+    }
+    
   
     //CHECK FOR EXISTING USER
     const existingUser = await userModel.findOne({email});
@@ -43,7 +48,7 @@ const register = async(req, res) =>{
 
     //saving new user
     const user = await userModel.create({
-        name, email, phone, password:hashedPassword
+        name, email, phone,answer, password:hashedPassword
     });
 
     res.status(201).send({
@@ -128,6 +133,73 @@ const login = async(req, res) => {
 };
 
 
+// *----------*
+//   FORGOT PASSWORD
+// *----------*
+
+const forgotPasswordController = async (req, res) => {
+    try {
+        const { email, answer, newpassword } = req.body;
+        if (!email) {
+            res.status(400).send("Email is required!!!");
+        }
+
+        if (!answer) {
+            res.status(400).send("Answer is required!!!");
+        }
+
+        if (!newpassword) {
+            res.status(400).send("New Password is required!!!");
+        }
+
+        // Check email and answer
+        const user = await userModel.findOne({ email, answer });
+        // Validation
+        if (!user) {
+            res.status(404).send({
+                success: false,
+                message: "Wrong Email or Answer"
+            });
+            return; // Return early to prevent further execution
+        }
+
+        const hashed = await hashPassword(newpassword)
+        await userModel.findByIdAndUpdate(user._id, { password: hashed });
+        res.status(200).send({
+            success: true,
+            message: "Password Reset Successful!!!"
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "something went wrong",
+            error
+        });
+    }
+};
+
+
+// CONTACT
+const messageMe = async(req, res) =>{
+        try {
+            const response = req.body;
+            console.log(response);
+            await Message.create(response);
+            return res.status(200).json({success: true, message: "Message sent successfully!!!"});
+        } catch (error) {
+            return res.status(500).json({ message: "Message failed to send!!!"});
+            // return res.status(500).json(extraDetails);
+
+            // next(error);
+        }
+    
+};
+
+
+
+
 
 //test controller
 const testController = (req, res) => {
@@ -171,4 +243,45 @@ const updateProfileController = async(req, res)=>{
     }
 };
 
-module.exports = {register, login, testController, updateProfileController};
+
+// GET USER IN ADMIN PANEL
+const getUser = async(req, res) =>{
+    try {
+        const alluser = await userModel.find({}).select("-password");
+        res.status(200).send({
+            success: true,
+            message: "user fetched successfull",
+            alluser
+        })
+        // console.log(alluser);
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({
+            success: false,
+            message: "Something went wrong",
+            error
+        })
+    }
+}
+
+// DELETE USER
+const deleteUser = async(req, res)=>{
+    try {
+        const {id} = req.params;
+        await userModel.findByIdAndDelete(id);
+        res.status(200).send({
+            success: true,
+            message: "User Deleted Successfully"
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false, 
+            message: "Error while deleting user",
+            error,
+
+        });
+    }
+}
+
+module.exports = {register, login, forgotPasswordController, testController, updateProfileController, messageMe, getUser, deleteUser};

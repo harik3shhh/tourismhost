@@ -25,6 +25,31 @@ const productSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String 
     },
+
+    food :{
+        type: String,
+        required: true,
+    },
+
+    transport :{
+        type: String,
+        required: true,
+    },
+
+    nearby :{
+        type: String,
+        required: true,
+    },
+
+    location :{
+        type: String,
+        required: true,
+    },
+
+    besttime :{
+        type: String,
+        required: true,
+    },
   
 }, {timestamps:true});
 

@@ -1,8 +1,9 @@
 .play-video{
-    flex-basis: 69%;
+    flex-basis: 900%;
 }
 .play-video video{
-    width: 100%;
+    /* margin-left: 250px; */
+    width: 60%;
 }
 
 .play-video h3{
@@ -75,6 +76,7 @@
     outline: 0;
     border-radius: 4px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .vid-description{
@@ -135,4 +137,12 @@
 .comment-action span{
     margin-right: 20px;
     color: #5a5a5a;
+}
+
+
+.heading-container{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 150px;
+    
 }

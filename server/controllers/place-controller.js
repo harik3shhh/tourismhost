@@ -7,7 +7,7 @@ const categoryModel = require("../models/category-model");
 const createProductController = async(req, res) => {
     try {
         // const name = req.body;
-        const { name, description, category  } = req.fields;
+        const { name, description, category , food, transport, nearby, location, besttime } = req.fields;
         const { photo } = req.files;
 
         // console.log(`Harikesh: ${name}`);
@@ -25,6 +25,22 @@ const createProductController = async(req, res) => {
                 case !category:
                 return res.status(500).send({error: "Category is required"});
 
+                case !food:
+                return res.status(500).send({error: "Food is required"});
+
+                case !transport:
+                    return res.status(500).send({error: "Transport is required"});
+
+                case !nearby:
+                    return res.status(500).send({error: "Nearby Place is required"});
+
+                case !location:
+                    return res.status(500).send({error: "Location Place is required"});
+
+                case !besttime:
+                    return res.status(500).send({error: "Besi time is required"});
+
+    
                 case !photo && (!photo ||photo.size > 10000):
                 return res.status(500).send({error: "Photo is required and should be less than 1 mb"});
         }
@@ -216,7 +232,7 @@ const productCountController = async(req, res) =>{
 // product list based  on page
 const productListController = async(req, res)=>{
     try {
-        const perPage = 12;
+        const perPage = 8;
         const page = req.params.page ? req.params.page: 1
         const products = await productModel.find({}).select("-photo").skip((page-1)*perPage).limit(perPage).sort({createdAt: -1})
 

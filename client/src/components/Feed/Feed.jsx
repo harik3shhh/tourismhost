@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import "./Feed.css"
-
-
-
-// import { useAuth } from '../context/auth'
-import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import indiabanner from "../../assets/banner2.png"
+import advert from "../../assets/adv4.jpg"
+import adv2 from "../../assets/adv2.jpg"
+import "./Feed.css"
 
 
 
@@ -91,18 +90,26 @@ const Feed = () => {
   };
 
   return (<>
+      <div>
+      <img style={{borderRadius: "60px", marginLeft: "30px"}} src={indiabanner} alt="banner" height={"400px"} width={"95%"}/>
+      </div>
+
+      
+      <h2 style={{textAlign: "center", fontWeight: "bolder", marginBottom:"10px"}}>🚅 Explore. Dream. Discover. </h2><br />
+      <div style={{display: "flex", justifyContent: "center"}}>
+      <img src={adv2} alt="" width={"45%"} height={"90px"} style={{marginRight:"5px"}}/>
+      <img src={advert} alt="" height={"90px"} width={"45%"}/>
+      </div><br />
+      <hr />
     <div className="feed">
+   
       {products?.map(p => (
         <Link to={`/place/${p.slug}`} className='card'>
           <img src={`http://localhost:8000/api/v1/place/place-photo/${p._id}`} height={"196px"} width={"290px"} alt="" />
           <h2>{p.name}</h2>
           <h3>{p.description.substring(0, 30)}</h3>
-          {/* <p>100k likes &bull; 2 days ago</p> */}
-          {/* <button className='btn btn-primary ms-1' onClick={() => navigate(`/place/${p.slug}`)}>More Details</button> */}
         </Link>
       ))}
-
-
     </div>
 
     <div className='btn-center'>

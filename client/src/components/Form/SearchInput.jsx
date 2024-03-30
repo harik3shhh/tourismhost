@@ -21,9 +21,9 @@ const SearchInput = () => {
 
   return (
     <div className='nav-middle flex-div'>
-      <div className="search-box flex-div">
+      <div className="search-box flex-div" style={{background: "white"}}>
         
-        <input type="search" placeholder="Search"
+        <input  type="search" placeholder="Search by place name or category"
         value={values.keyword}
         onChange={(e)=> setValues({...values, keyword: e.target.value})} />
         <img type="submit" onClick={handleSubmit} src={SearchIcon} alt="" />

@@ -10,11 +10,13 @@ import { AuthProvider } from './context/auth.jsx'
 import { SearchProvider } from './context/Search.jsx'
 import { store } from './redux/store.jsx'
 import { Provider } from 'react-redux'
+import { CartProvider } from './context/wishlist.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
   <AuthProvider>
     <SearchProvider>
+      <CartProvider>
     <BrowserRouter>
     <ToastContainer
       position="top-right"
@@ -31,6 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       />
     <App />
     </BrowserRouter>
+    </CartProvider>
     </SearchProvider>
     </AuthProvider>
     </Provider>

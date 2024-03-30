@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import AdminMenu from '../../components/Layout/AdminMenu';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import "./Places.css";
 
 const Places = ({ sidebar }) => {
     const [products, setProducts] = useState([]);
@@ -27,22 +28,22 @@ const Places = ({ sidebar }) => {
     return (
         <>
             <Sidebar sidebar={sidebar} />
-            <div className="container">
+            <div className="container places-container">
                 <div className="row">
                     <div className="col-md-3">
                         <AdminMenu />
                     </div>
                     <div className="col-md-9">
-                        <h1 className="text-center">All Places List</h1>
-                        <div className="row">
+                        <h1 className="places-title">All Places List</h1>
+                        <div className="places-grid">
                             {products.map(p => (
-                                <div key={p._id} className="col-md-4">
-                                    <Link to={`/dashboard/admin/place/${p.slug}`} className="place-link">
-                                        <div className="card m-2" style={{ width: '18rem' }}>
-                                            <img src={`http://localhost:8000/api/v1/place/place-photo/${p._id}`} className="card-img-top" alt={p.name} />
-                                            <div className="card-body">
-                                                <h5 className="card-title">{p.name}</h5>
-                                                <p className="card-text">{p.description}</p>
+                                <div key={p._id} className="places-item">
+                                    <Link to={`/dashboard/admin/place/${p.slug}`} className="places-link">
+                                        <div className="places-card">
+                                            <img src={`http://localhost:8000/api/v1/place/place-photo/${p._id}`} className="places-card-image" alt={p.name} />
+                                            <div className="places-card-body">
+                                                <h5 className="places-card-title">{p.name}</h5>
+                                                <p className="places-card-description">{p.description.substring(0, 30)}</p>
                                             </div>
                                         </div>
                                     </Link>

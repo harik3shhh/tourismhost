@@ -20,27 +20,37 @@ import { useSelector } from "react-redux";
 import Video from './pages/Video/Video'
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy'
 import TrainBooking from './pages/Bookings/TrainBooking'
+import ForgotPassword from './pages/Auth/ForgotPassword'
+import FlightBooking from './pages/Bookings/FlightBooking'
+import Contact from './pages/Contact/Contact'
+import WishlistPage from './pages/WishlistPage'
+import Users from './pages/Admin/Users'
+import AboutUs from './pages/Aboutus'
+
 
 
 
 const App = () => {
-  const [sidebar, setSidebar] = useState(false);
+
+  const [sidebar, setSidebar] = useState(true);
   const { theme } = useSelector((state)=> state.theme);
   console.log(theme);
 
   return (
-    <div>
-      <Navbar setSidebar={setSidebar}/>
+    <div >
+      <Navbar setSidebar={setSidebar} />
       <Routes>
         <Route path='/' element={<Home sidebar={sidebar}/>}/>
-        <Route path='/privacypolicy' element={<PrivacyPolicy/>}/>
-        <Route path='/trainbooking' element={<TrainBooking/>}/>
+        <Route path='/privacypolicy' element={<PrivacyPolicy sidebar={sidebar}/>}/>
+        <Route path='/trainbooking' element={<TrainBooking sidebar={sidebar}/>}/>
+        <Route path='/flightbooking' element={<FlightBooking sidebar={sidebar}/>}/>
+        <Route path='/wishlist' element={<WishlistPage sidebar={sidebar}/>}/>
 
 
         <Route path='/place/:slug' element={<Video />}/>
         <Route path='/profile' element={<Profile sidebar={sidebar}/>} />
-        <Route path='/place/:slug' element={<PlaceDetails />} />
-        <Route path='/search' element={<Search />} />
+        <Route path='/place/:slug' element={<PlaceDetails sidebar={sidebar} />} />
+        <Route path='/search' element={<Search sidebar={sidebar}/>} />
         
 
         {/* USER */}
@@ -55,10 +65,14 @@ const App = () => {
           <Route path='admin/create-place' element={<CreatePlace sidebar={sidebar}/>} />
           <Route path='admin/places' element={<Places sidebar={sidebar}/>} />
           <Route path='admin/place/:slug' element={<UpdatePlace sidebar={sidebar}/>} />
+          <Route path='admin/allusers' element ={<Users sidebar={sidebar}/>}/>
         </Route>
 
         <Route path='/login' element={<Login sidebar={sidebar}/>}/>
-        <Route path='/register' element={<Register/>}/>
+        <Route path='/register' element={<Register sidebar={sidebar}/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword sidebar={sidebar}/>} />
+        <Route path='/contact' element={<Contact sidebar={sidebar} />} />
+        <Route path='/about' element={<AboutUs sidebar={sidebar}/>}/>
 
         <Route path='*' element={<PageNotFound />}/>
       </Routes>

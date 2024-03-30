@@ -1,0 +1,51 @@
+/* Places.css */
+
+.places-container {
+    margin-top: 20px;
+}
+
+.places-title {
+    text-align: center;
+}
+
+.places-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.places-item {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+}
+
+.places-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.places-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.places-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.places-card-body {
+    padding: 10px;
+}
+
+.places-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.places-card-description {
+    font-size: 1rem;
+    color: #555;
+}

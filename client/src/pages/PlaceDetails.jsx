@@ -17,21 +17,13 @@ const PlaceDetails = () => {
         try {
             const {data} = await axios.get(`http://localhost:8000/api/v1/place/get-place/${params.slug}`);        
             setProduct(data?.product);
-            getSimilarProduct(data?.product._id, data?.product.category._id)
+           
         } catch (error) {
             console.log(error);
         }
     };
 
-    // GET SIMILAR PRODUCT
-    const getSimilarProduct = async(pid, cid) =>{
-      try {
-        const {data} = await axios.get(`http://localhost:8000/api/v1/place/related-place/${pid}/${cid}`);
-        setRelatedProducts(data?.data.products);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+
 
 
   return (
@@ -51,24 +43,7 @@ const PlaceDetails = () => {
         </div>
       </div>
       <hr />
-      <div className="row container">
-        <h6>Similar Places</h6>
-        {relatedProducts.length < 1 && (<p className='text-center'>No Similar Places Found</p>)}
-        <div className="d-flex flex-wrap">
-            {relatedProducts?.map(p => (
-                      <div className="card m-2" style={{width: "18rem"}} >
-                    <img src={`http://localhost:8000/api/v1/place/place-photo/${p._id}`} class="card-img-top" alt={p.name} />
-                    <div className="card-body">
-                      <h5 className="card-title">{p.name}</h5>
-                      <p className="card-text">{p.description.substring(0,30)}</p>
-                      
-                     
-                      <button className='btn btn-secondary ms-1'>❤️</button>
-                    </div>
-                   </div>                   
-                  ))}
-          </div>
-      </div>
+     
     </>
   )
 }
