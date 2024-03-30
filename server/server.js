@@ -11,7 +11,7 @@ const cors = require("cors");
 const port = process.env.PORT;
 
 const corsOptions = {
-    origin: "https://tourismhost.vercel.app/",
+    origin: "*",
     methods: "GET, POST, PUT, DELETE, HEAD",
     credentials: true,
 };
