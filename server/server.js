@@ -11,7 +11,7 @@ const cors = require("cors");
 const port = process.env.PORT;
 
 const corsOptions = {
-    origin: "http://localhost:5173",
+    origin: "https://vercel.com/harikeshs-projects/tourismhost",
     methods: "GET, POST, PUT, DELETE, HEAD",
     credentials: true,
 };
