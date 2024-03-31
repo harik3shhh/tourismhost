@@ -22,7 +22,7 @@ const UpdatePlace = ({ sidebar }) => {
   // GET SINGLE PRODUCT
   const getSingleProduct = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:8000/api/v1/place/get-place/${params.slug}`);
+      const { data } = await axios.get(`https://tourismhost-ubpc.vercel.app/api/v1/place/get-place/${params.slug}`);
       setName(data.product.name);
       setId(data.product._id);
       setDescription(data.product.description);
@@ -39,7 +39,7 @@ const UpdatePlace = ({ sidebar }) => {
   // GET ALL CATEGORY
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get('http://localhost:8000/api/v1/category/get-category');
+      const { data } = await axios.get('https://tourismhost-ubpc.vercel.app/api/v1/category/get-category');
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -64,7 +64,7 @@ const UpdatePlace = ({ sidebar }) => {
       productData.append('description', description);
       photo && productData.append('photo', photo);
 
-      const { data } = await axios.put(`http://localhost:8000/api/v1/place/update-place/${id}`, productData);
+      const { data } = await axios.put(`https://tourismhost-ubpc.vercel.app/api/v1/place/update-place/${id}`, productData);
       if (data?.success) {
         toast.success('Place Updated Successfully');
       } else {
@@ -81,7 +81,7 @@ const UpdatePlace = ({ sidebar }) => {
     try {
       let answer = window.prompt('Are you sure want to delete Place ?');
       if (!answer) return;
-      const { data } = await axios.delete(`http://localhost:8000/api/v1/place/delete-place/${id}`);
+      const { data } = await axios.delete(`https://tourismhost-ubpc.vercel.app/api/v1/place/delete-place/${id}`);
       toast.success('Place Deleted Success');
       navigate('/dashboard/admin/places');
     } catch (error) {
@@ -131,7 +131,7 @@ const UpdatePlace = ({ sidebar }) => {
                   </div>
                 ) : (
                   <div className="text-center">
-                    <img src={`http://localhost:8000/api/v1/place/place-photo/${id}`} alt="photo to upload" height="200px" className="img img-responsive" />
+                    <img src={`https://tourismhost-ubpc.vercel.app/api/v1/place/place-photo/${id}`} alt="photo to upload" height="200px" className="img img-responsive" />
                   </div>
                 )}
               </div>
