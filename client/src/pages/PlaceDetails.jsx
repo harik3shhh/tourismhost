@@ -15,7 +15,7 @@ const PlaceDetails = () => {
     // GET PRODUCTS
     const getProduct = async() => {
         try {
-            const {data} = await axios.get(`http://localhost:8000/api/v1/place/get-place/${params.slug}`);        
+            const {data} = await axios.get(`https://tourismhost-ubpc.vercel.app/api/v1/place/get-place/${params.slug}`);        
             setProduct(data?.product);
            
         } catch (error) {
@@ -30,7 +30,7 @@ const PlaceDetails = () => {
     <>
       <div className="row container mt-2">
         <div className="col-md-6">
-            <img src={`http://localhost:8000/api/v1/place/place-photo/${product._id}`}
+            <img src={`https://tourismhost-ubpc.vercel.app/api/v1/place/place-photo/${product._id}`}
              alt={product.name} height={"200px"} width={'320px'} />
         </div>
         <div className="col-md-6">
