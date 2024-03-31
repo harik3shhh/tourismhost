@@ -24,6 +24,10 @@ app.use("/api/v1/category", categoryRoutes);
 app.use(formidable());
 app.use("/api/v1/place", placeRoutes);
 
+app.get("/", (req, res)=>{
+    res.send("home");
+});
+
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
 });
