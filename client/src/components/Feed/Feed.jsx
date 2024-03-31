@@ -25,7 +25,7 @@ const Feed = () => {
   const getAllCategory = async () => {
 
     try {
-      const { data } = await axios.get("http://localhost:8000/api/v1/category/get-category");
+      const { data } = await axios.get("https://tourismhost-ubpc.vercel.app/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -48,7 +48,7 @@ const Feed = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true)
-      const { data } = await axios.get(`http://localhost:8000/api/v1/place/place-list/${page}`);
+      const { data } = await axios.get(`https://tourismhost-ubpc.vercel.app/api/v1/place/place-list/${page}`);
       setLoading(false);
       // console.log(data);
       setProducts(data?.products)
@@ -63,7 +63,7 @@ const Feed = () => {
   // GET TOTAL COUNT
   const getTotal = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8000/api/v1/place/place-count");
+      const { data } = await axios.get("https://tourismhost-ubpc.vercel.app/api/v1/place/place-count");
       console.log(data);
       setTotal(data?.total)
     } catch (error) {
@@ -80,7 +80,7 @@ const Feed = () => {
   const loadMore = async () => {
     try {
       setLoading(true);
-      const { data } = await axios(`http://localhost:8000/api/v1/place/place-list/${page}`)
+      const { data } = await axios(`https://tourismhost-ubpc.vercel.app/api/v1/place/place-list/${page}`)
       setLoading(false);
       setProducts([...products, ...data?.products]);
     } catch (error) {
@@ -105,7 +105,7 @@ const Feed = () => {
    
       {products?.map(p => (
         <Link to={`/place/${p.slug}`} className='card'>
-          <img src={`http://localhost:8000/api/v1/place/place-photo/${p._id}`} height={"196px"} width={"290px"} alt="" />
+          <img src={`https://tourismhost-ubpc.vercel.app/api/v1/place/place-photo/${p._id}`} height={"196px"} width={"290px"} alt="" />
           <h2>{p.name}</h2>
           <h3>{p.description.substring(0, 30)}</h3>
         </Link>
