@@ -32,7 +32,7 @@ const Login = ({sidebar}) => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post('https://tourismhost-b1r6.vercel.app/api/auth/login', input);
+      const { data } = await axios.post('https://tourismhost-ubpc.vercel.app/api/auth/login', input);
       console.log(data);
       if (data?.success) {
         setInput({email: "", password: ""});
