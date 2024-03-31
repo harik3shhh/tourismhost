@@ -25,7 +25,7 @@ const CreatePlace = ({ sidebar }) => {
     // GET ALL CATEGORY
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get('http://localhost:8000/api/v1/category/get-category');
+            const { data } = await axios.get('https://tourismhost-ubpc.vercel.app/api/v1/category/get-category');
             if (data?.success) {
                 setCategories(data?.category);
             }
@@ -55,7 +55,7 @@ const CreatePlace = ({ sidebar }) => {
             productData.append('location', location);
             productData.append('besttime', besttime);
 
-            const { data } = await axios.post('http://localhost:8000/api/v1/place/create-place', productData);
+            const { data } = await axios.post('https://tourismhost-ubpc.vercel.app/api/v1/place/create-place', productData);
             if (data?.success) {
                 toast.success('Product Created Successfully');
                 navigate('/dashboard/admin/places');
