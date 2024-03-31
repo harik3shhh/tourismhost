@@ -11,7 +11,7 @@ const SearchInput = () => {
     const handleSubmit = async(e)=>{
         try {
             e.preventDefault();
-            const {data} = await axios.get(`http://localhost:8000/api/v1/place/search/${values.keyword}`)
+            const {data} = await axios.get(`https://tourismhost-ubpc.vercel.app/api/v1/place/search/${values.keyword}`)
             setValues({...values, results: data});
             navigate("/search");
         } catch (error) {
