@@ -5,6 +5,10 @@ const {requireSignIn, isAdmin} = require("../middlewares/auth-middleware");
 
 const router = express.Router();
 
+router.get("/", (req,  res)=>{
+    res.json("hello");
+});
+
 router.route("/register").post(register);
 
 router.route("/login").post(login);
