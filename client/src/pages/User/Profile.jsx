@@ -48,7 +48,7 @@ const Profile = ({ sidebar }) => {
                 },
             };
 
-            const { data } = await axios.put('http://localhost:8000/api/auth/profile', user, config);
+            const { data } = await axios.put('https://tourismhost-ubpc.vercel.app/api/auth/profile', user, config);
             if (data?.error) {
                 toast.error(data?.error);
             } else {
