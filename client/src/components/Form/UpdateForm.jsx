@@ -27,7 +27,7 @@ const UpdateForm = () => {
     const handleUpdate = async(e) => {
         e.preventDefault();
         try {
-          const {data} = await axios.put(`http://localhost:8000/api/v1/category/update-category/${selected._id}`, {name: updatedname});
+          const {data} = await axios.put(`https://tourismhost-ubpc.vercel.app/api/v1/category/update-category/${selected._id}`, {name: updatedname});
           if(data.success){
             toast.success(`${updateName} is updated`);
             setSelected(null);
