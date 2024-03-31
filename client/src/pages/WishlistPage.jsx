@@ -46,7 +46,7 @@ const WishlistPage = ({sidebar}) => {
                                 <div key={p._id} className="col-md-6 mb-2" style={{ width: '50%' }}>
                                     <div className="card" style={{ border: '1px solid #ccc', borderRadius: '5px',  padding: '10px', height: '100%', backgroundColor: 'white' }}>
                                         <div className="card-body">
-                                            <img src={`http://localhost:8000/api/v1/place/place-photo/${p._id}`} alt={p.name} style={{ maxWidth: '100%', height: '200px', objectFit: 'cover', borderRadius: '5px' }} />
+                                            <img src={`https://tourismhost-ubpc.vercel.app/api/v1/place/place-photo/${p._id}`} alt={p.name} style={{ maxWidth: '100%', height: '200px', objectFit: 'cover', borderRadius: '5px' }} />
                                             <h5 className="card-title" style={{ fontWeight: 'bold', marginBottom: '5px', marginTop: '10px' }}>{p.name}</h5>
                                             <p className="card-text" style={{ fontSize: '14px', marginBottom: '10px' }}>{p.description.substring(0, 300)}</p>
                                             <button className="btn btn-danger" onClick={() => removeCartItem(p._id)}>Remove</button>
