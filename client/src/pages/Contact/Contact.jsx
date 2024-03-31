@@ -31,7 +31,7 @@ const Contact = ({sidebar}) => {
     e.preventDefault();
   
     try {
-      const { data } = await axios.post('http://localhost:8000/api/auth/message', user);
+      const { data } = await axios.post('https://tourismhost-ubpc.vercel.app/api/auth/message', user);
       console.log(data); // Log the entire response data
       if (data?.success) {
         setUser({ name: '', email: '', message: '' });
