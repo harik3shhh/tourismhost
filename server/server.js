@@ -11,10 +11,11 @@ const cors = require("cors");
 const port = process.env.PORT;
 
 const corsOptions = {
-    origin: "*",
+    origin: ["http://localhost:5173", "https://tourismhost.vercel.app"],
     methods: "GET, POST, PUT, DELETE, HEAD",
     credentials: true,
 };
+
 
 app.use(cors(corsOptions));
 app.use(express.json())
