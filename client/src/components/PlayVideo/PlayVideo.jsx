@@ -27,7 +27,7 @@ const PlayVideo = () => {
     // GET PRODUCTS
     const getProduct = async() => {
         try {
-            const {data} = await axios.get(`http://localhost:8000/api/v1/place/get-place/${params.slug}`);        
+            const {data} = await axios.get(`https://tourismhost-ubpc.vercel.app/api/v1/place/get-place/${params.slug}`);        
             setProduct(data?.product);
             getSimilarProduct(data?.product._id, data?.product.category._id)
         } catch (error) {
@@ -38,7 +38,7 @@ const PlayVideo = () => {
     // GET SIMILAR PRODUCT
     const getSimilarProduct = async(pid, cid) =>{
       try {
-        const {data} = await axios.get(`http://localhost:8000/api/v1/place/related-place/${pid}/${cid}`);
+        const {data} = await axios.get(`https://tourismhost-ubpc.vercel.app/api/v1/place/related-place/${pid}/${cid}`);
         setRelatedProducts(data?.data.products);
       } catch (error) {
         console.log(error);
@@ -52,7 +52,7 @@ const PlayVideo = () => {
        
         <div style={{ float: "right", marginRight: "20px", flexBasis: "90%" }}>
             <img 
-                src={`http://localhost:8000/api/v1/place/place-photo/${product._id}`}
+                src={`https://tourismhost-ubpc.vercel.app/api/v1/place/place-photo/${product._id}`}
                 alt={product.name}  
                 height={"250px"} 
                 width={'400px'} 
