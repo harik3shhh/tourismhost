@@ -20,7 +20,7 @@ const Users = ({sidebar}) => {
         }
       };
 
-      const { data } = await axios.get("http://localhost:8000/api/auth/alluser", config);
+      const { data } = await axios.get("https://tourismhost-ubpc.vercel.app/api/auth/alluser", config);
       console.log(data);
       setUsers(data?.alluser)
       
@@ -54,7 +54,7 @@ const Users = ({sidebar}) => {
       };
 
       
-      const {data} = await axios.delete(`http://localhost:8000/api/auth/delete-user/${id}`, config);
+      const {data} = await axios.delete(`https://tourismhost-ubpc.vercel.app/api/auth/delete-user/${id}`, config);
       if(data.success){
         toast.success(`User is Deleted`);
         
