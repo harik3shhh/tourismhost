@@ -207,7 +207,7 @@ const CreatePlace = ({ sidebar }) => {
                             <button
                                     className="btn btn-primary"
                                     onClick={handleSubmit}
-                                    style={{ backgroundColor: '#007bff', color: '#fff', borderRadius: '5px' }}
+                                    style={{ backgroundColor: '#007bff', color: '#fff', borderRadius: '5px', cursor: "pointer" }}
                                 >
                                     CREATE PLACE
                                 </button>
