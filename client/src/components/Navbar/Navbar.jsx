@@ -3,7 +3,7 @@ import "./Navbar.css";
 import menuIcon from "../../assets/menu.png";
 
 import profileIcon from "../../assets/bluepic.png";
-
+import dashboardimage from "../../assets/dashboardimage.webp"
 import settingsPic from "../../assets/setting.png";
 import helpPic from "../../assets/help.png";
 import logoutPic from "../../assets/logout.png";
@@ -12,7 +12,8 @@ import { useAuth } from '../../context/auth';
 import { NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SearchInput from '../Form/SearchInput';
-import { BsMoon, BsSunFill } from "react-icons/bs"
+import loginIcon from "../../assets/loginIcon.webp"
+import registerIcon from "../../assets/registerIcon.jpeg"
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -47,11 +48,7 @@ const Navbar = ({ setSidebar, props} )  => {
       <div className="nav-right flex-div">
 
 
-        <ul style={{listStyle: "none",}} className="dropdown-menu">
-          <li className='nav-item' >
-            <NavLink className="dropdown-item nav-link" to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}><h3 style={{color: "black"}}>Dashboard</h3> </NavLink>
-          </li>
-        </ul>
+        
 
 
        {/* <button onClick={() => handleTheme()}>
@@ -77,6 +74,13 @@ const Navbar = ({ setSidebar, props} )  => {
                 <img src={userProfile} alt="image" />
                 <p>Profile</p>
               </NavLink>
+
+              <NavLink to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`} className="sub-menu-link">
+                <img src={dashboardimage} alt="image" />
+                <p>Dashboard</p>
+              </NavLink>
+
+
               <NavLink to="" className="sub-menu-link">
                 <img src={settingsPic} alt="" />
                 <p>Settings & Privacy</p>
@@ -89,11 +93,11 @@ const Navbar = ({ setSidebar, props} )  => {
                 !auth.user ? (
                   <>
                     <NavLink to="/login" className="sub-menu-link">
-                      <img src={logoutPic} alt="logout" />
+                      <img src={loginIcon} alt="logout" />
                       <p>Login</p>
                     </NavLink>
                     <NavLink to="/register" className="sub-menu-link">
-                      <img src={logoutPic} alt="logout" />
+                      <img src={registerIcon} alt="logout" />
                       <p>Register</p>
                     </NavLink>
                   </>
