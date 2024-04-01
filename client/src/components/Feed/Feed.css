@@ -1,48 +1,61 @@
-.feed{
+/* Feed.css */
+
+.feed {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-column-gap: 16px;
-    grid-row-gap: 30px;
-    margin-top: 15px;
-}
-
-
-.card img{
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card img {
     width: 100%;
-    border-radius: 5px;
-}
-
-.card h2{
-    font-size: 16px;
-    font-weight: 600;
-    color: #000;
-    margin: 5px 0;
-}
-
-.card h3{
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-    margin: 6px 0;
-}
-
-.card p{
-    font-size: 14px;
-}
-
-.btn-center{
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .card h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px;
+  }
+  
+  .card h3 {
+    font-size: 1rem;
+    margin: 10px;
+    color: #666;
+  }
+  
+  .btn-center {
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-.loadingbtn{
     margin-top: 20px;
-    background: red;
-    padding: 8px;
+  }
+  
+  .loadingbtn {
+    padding: 10px 20px;
+    background-color: #ee1c2e;
+    color: white;
     border: none;
     border-radius: 5px;
-    font-weight: 600;
-    color: white;
     cursor: pointer;
-}
+    transition: background-color 0.3s;
+  }
+  
+  .loadingbtn:hover {
+    background-color: #ed1919;
+  }
+  
