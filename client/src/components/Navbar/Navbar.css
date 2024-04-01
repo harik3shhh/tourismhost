@@ -4,10 +4,15 @@ nav {
     justify-content: space-between;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: #fc8626;
-    /* background-color: rgb(131, 131, 233); */
     position: sticky;
     top: 0;
     z-index: 10;
+    display: flex;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
 }
 
 .nav-left .menu-icon {
@@ -17,6 +22,11 @@ nav {
 
 .nav-left .logo {
     width: 130px;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
 }
 
 .nav-right img {
@@ -118,10 +128,11 @@ nav {
 }
 
 /* Media queries for responsiveness */
-
 @media (max-width: 768px) {
     nav {
         padding: 10px;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .nav-left .menu-icon,
@@ -149,5 +160,18 @@ nav {
 
     .sub-menu-link span {
         font-size: 18px;
+    }
+
+    .user-pic {
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    .search-input {
+        max-width: 150px; /* Adjust the max-width as needed */
+    }
+
+    h1 {
+        display: none;
     }
 }
