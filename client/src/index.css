@@ -1,71 +1,136 @@
-*{
+/* Reset default styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
 }
 
-a{
+/* Remove underline from links */
+a {
     text-decoration: none;
     color: #5a5a5a;
 }
 
-img{
+/* Set cursor pointer for all images */
+img {
     cursor: pointer;
 }
 
-.flex-div{
+/* Flex utility class */
+.flex-div {
     display: flex;
     align-items: center;
-    
 }
 
+/* Navbar styles */
+nav {
+    padding: 10px 2%;
+    justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #72a8e5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
+/* Menu icon and logo styles */
+.nav-left .menu-icon {
+    width: 22px;
+    margin-right: 25px;
+}
 
-
-/* SEARCH BAR */
-.nav-middle .search-box{
+/* Search box styles */
+.nav-middle .search-box {
     border: 1px solid #ccc;
     margin-right: 15px;
     padding: 8px 12px;
     border-radius: 25px;
+    display: flex;
+    align-items: center; /* Center vertically */
 }
 
-.nav-middle .search-box input{
-    width: 400px;
+.nav-middle .search-box input {
+    width: 400px; /* Take up full width */
     border: 0;
     outline: 0;
     background: transparent;
 }
 
-.nav-middle .search-box img{
+.nav-middle .search-box img {
     width: 15px;
-    /* margin-top: 2px; */
-
 }
 
+/* Profile picture styles */
+.nav-right .user-pic {
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 30px;
+}
 
-/* DARK THEME */
-@layer base {
-    :root {
-      --color-bg: 227 227 227;
-      --color-primary: 255 255 255;
-      --color-secondary:255 255 255;
-      --color-ascent1: 0 0 0;
-      --color-ascent2: 89 91 100;
-      --color-blue: 6 90 216;
-      --color-white: 255 255 255;
-  
+/* Sub-menu styles */
+.sub-menu-wrap {
+    position: absolute;
+    top: 100%;
+    right: 10%;
+    width: 320px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap.active {
+    max-height: 600px;
+}
+
+.sub-menu {
+    background: #f7f2f2;
+    padding: 20px;
+    margin: 10px;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    /* Navbar padding adjustment */
+    nav {
+        padding: 10px;
     }
-    /* //15 23 42  21 30 49*/
-    [data-theme="dark"] {
-       --color-bg: 12 12 12;
-       --color-primary: 31 31 31;
-      --color-secondary: 47 45 48;
-      --color-ascent1: 255 255 255;
-      --color-ascent2: 164 161 162;
-      --color-blue: 6 90 216;
-      /* //16 176 255; */
-      --color-white: 255 255 255;
+
+    /* Hide menu icon and logo on smaller screens */
+    .nav-left .menu-icon,
+    .nav-left .logo {
+        display: none;
     }
-  }
+
+    /* Adjust margin for profile picture on smaller screens */
+    .nav-right .user-pic {
+        margin-left: 10px;
+    }
+
+    /* Adjust search box styles for smaller screens */
+    .nav-middle .search-box {
+        margin-right: 0;
+    }
+
+    /* Hide sub-menu link text on smaller screens */
+    .sub-menu-link p {
+        display: none;
+    }
+
+    /* Adjust sub-menu link icon size on smaller screens */
+    .sub-menu-link img {
+        width: 40px;
+    }
+
+    /* Adjust profile picture alignment on smaller screens */
+    .user-pic {
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    /* Hide h1 tag on smaller screens */
+    h1 {
+        display: none;
+    }
+}
