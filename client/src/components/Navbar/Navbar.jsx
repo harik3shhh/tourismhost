@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import SearchInput from '../Form/SearchInput';
 import loginIcon from "../../assets/loginIcon.webp"
 import registerIcon from "../../assets/registerIcon.jpeg"
+import aeroplane from "../../assets/tedcar.jpg"
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -47,8 +48,23 @@ const Navbar = ({ setSidebar, props} )  => {
 
       <div className="nav-right flex-div">
 
+      {
+    !auth.user ? (
+        <>
+            <NavLink to="/login" className="sub-menu-link">
+                <button style={{ padding: '4px 8px', borderRadius: '5px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', background: 'blue', color: '#fff', cursor: 'pointer', fontWeight: "bold" }}>Login</button>
+            </NavLink>
+        </>
+    ) : (
+        <NavLink className="sub-menu-link">
+            <button style={{ padding: '4px 8px', borderRadius: '5px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', background: 'red', color: '#333', cursor: 'pointer' }}>
+                <NavLink onClick={handleLogout} to={"/"} style={{ color: 'white', fontWeight: "bolder" }}>Logout</NavLink>
+            </button>
+        </NavLink>
+    )
+}
 
-        
+
 
 
        {/* <button onClick={() => handleTheme()}>
