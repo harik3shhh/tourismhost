@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import SearchInput from '../Form/SearchInput';
 import loginIcon from "../../assets/loginIcon.webp"
 import registerIcon from "../../assets/registerIcon.jpeg"
-import aeroplane from "../../assets/tedcar.jpg"
+
 
 import { useDispatch, useSelector } from 'react-redux';
 
